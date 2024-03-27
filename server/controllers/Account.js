@@ -7,7 +7,13 @@ const loginPage = (req, res) => res.render('login');
 
 const signupPage = (req, res) => res.render('signup');
 
-const logout = (req, res) => res.redirect('/');
+const logout = (req, res) => {
+    // Destroy session cookies to notify the server of logout
+    req.session.destroy();
+
+    // Direct back to the home page
+    res.redirect('/');
+}
 
 const login = (req, res) => {
   // Retrieve data
@@ -25,6 +31,9 @@ const login = (req, res) => {
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong username or password!' });
     }
+
+    // Save the account to the session cookies and track data
+    req.session.account = Account.toAPI(account);
 
     // Redirect to the /maker page
     return res.json({ redirect: '/maker' });
@@ -55,6 +64,9 @@ const signup = async (req, res) => {
     // Create the new account and save it
     const newAccount = new Account({ username, password: hash });
     await newAccount.save();
+
+    // Save the account to the session cookies and track data
+    req.session.account = Account.toAPI(newAccount);
 
     // Redirect back to the /maker page
     return res.json({ redirect: '/maker' });
