@@ -17,7 +17,7 @@ const logout = (req, res) => {
 const login = (req, res) => {
     // Retrieve data
     const username = `${req.body.username}`;
-    const pass = `${req.body.pass};`
+    const pass = `${req.body.pass}`;
 
     // Check if both a username and password were given
     if(!username || !pass) {
