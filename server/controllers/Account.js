@@ -8,12 +8,12 @@ const loginPage = (req, res) => res.render('login');
 const signupPage = (req, res) => res.render('signup');
 
 const logout = (req, res) => {
-    // Destroy session cookies to notify the server of logout
-    req.session.destroy();
+  // Destroy session cookies to notify the server of logout
+  req.session.destroy();
 
-    // Direct back to the home page
-    res.redirect('/');
-}
+  // Direct back to the home page
+  res.redirect('/');
+};
 
 const login = (req, res) => {
   // Retrieve data

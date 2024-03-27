@@ -38,8 +38,8 @@ app.use(bodyParser.json());
 app.use(session({
   key: 'sessionID', // Name of the cookie so it can be tracked
   secret: 'Domo Arigato', // Private string used as a seed for hashing/creating unique session keys
-  resave: false, // Tells the session library to only send the session keyback to the database if it changes
-  saveUninitialized: false // Prevents us from saving uninitialized session IDs to the database
+  resave: false, // Only send the session keyback to the database if it changes
+  saveUninitialized: false, // Prevents us from saving uninitialized session IDs to the database
 }));
 
 app.engine('handlebars', expressHandlebars.engine({ defaultLayout: '' }));
